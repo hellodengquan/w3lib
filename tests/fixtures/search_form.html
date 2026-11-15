@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Local catalog search</title>
+  </head>
+  <body>
+    <h1>Local catalog search</h1>
+
+    <!--
+      Fixture for tests/test_url_pagination_pipeline.py. It describes a local
+      (127.0.0.1:8765) page that the tests read; no network access is involved.
+
+      Local server semantics, which the tests mirror:
+
+      * The query string uses ";" as its parameter separator (RFC 3986 allows
+        any separator, and this page picks an explicit one so that the
+        separator / percent-encoding interplay is visible in the wire format).
+      * A GET submission replaces the query string of the action URL with the
+        control data; the action URL's own query (?page=1;ref=home) is
+        discarded. The action URL's fragment (#results) is kept, so it still
+        ends up in the request URL.
+
+      Page selection:
+
+      * "page" may be repeated and may be blank. The first non-blank "page"
+        value selects the page; blank values are ignored, and when all of them
+        are blank page 1 is served.
+      * "sort" being blank selects the site's default ordering.
+      * "tag" may be repeated; its values are ANDed in the order given, so
+        tag=x;tag=y and tag=y;tag=x are different result pages.
+    -->
+    <form id="search" method="get" action="/search?page=1;ref=home#results">
+      <input type="text" name="q" value="a;b&amp;c">
+      <select name="tag" multiple>
+        <option value="x" selected>x</option>
+        <option value="y" selected>y</option>
+        <option value="z">z</option>
+      </select>
+      <!-- The optional page box is left blank: "page=" is submitted first. -->
+      <input type="text" name="page" value="">
+      <input type="hidden" name="page" value="1">
+      <input type="hidden" name="sort" value="">
+      <input type="hidden" name="utm_source" value="crawl">
+      <button type="submit">Search</button>
+    </form>
+
+    <!-- Pagination link: only the page condition; filters come from the form. -->
+    <nav>
+      <a class="next" href="/search?page=2#results">Next page</a>
+    </nav>
+  </body>
+</html>
