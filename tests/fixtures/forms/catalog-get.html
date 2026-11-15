@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Catalog search form</title>
+  </head>
+  <body>
+    <form
+      id="catalog-search"
+      method="get"
+      action="https://shop.test/catalog#results"
+      data-query-separator="&amp;"
+    >
+      <input type="hidden" name="view" value="grid">
+      <input type="hidden" name="sort" value="price asc">
+      <input type="hidden" name="session" value="abc123">
+      <fieldset>
+        <legend>Filters</legend>
+        <input type="checkbox" name="tag" value="a" checked>
+        <input type="checkbox" name="tag" value="b" checked>
+        <input type="checkbox" name="size" value="s" checked>
+        <input type="checkbox" name="size" value="m" checked>
+        <input type="checkbox" name="size" value="l">
+        <input type="checkbox" name="tag" value="c" disabled checked>
+      </fieldset>
+      <input type="search" name="q" value="">
+      <input type="number" name="page" value="">
+      <button type="submit" name="go" value="search">Search</button>
+      <input type="submit" value="Also search">
+    </form>
+  </body>
+</html>

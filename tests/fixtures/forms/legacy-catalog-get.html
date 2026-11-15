@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Legacy catalog search form</title>
+  </head>
+  <body>
+    <form
+      id="legacy-search"
+      method="get"
+      action="https://shop.test/legacy#top"
+      data-query-separator=";"
+    >
+      <input type="hidden" name="view" value="grid">
+      <input type="hidden" name="q" value="a;b">
+      <input type="hidden" name="session" value="abc123">
+      <select name="tag" multiple>
+        <option value="a" selected>a</option>
+        <option value="b" selected>b</option>
+        <option value="c">c</option>
+      </select>
+      <select name="sort">
+        <option value="price asc" selected>Price</option>
+        <option value="newest">Newest</option>
+      </select>
+      <input type="number" name="page" value="">
+    </form>
+  </body>
+</html>
